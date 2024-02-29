@@ -1,3 +1,7 @@
+/* Score resets every game */
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3); + 1
     
@@ -14,20 +18,37 @@ function oneRound(playerChoice, comp) {
     if (playerChoice.toUpperCase() === comp.toUpperCase()) {
         return "Tie!";
     } else if (playerChoice.toUpperCase() === "ROCK" && comp.toUpperCase() === "SCISSORS") {
-        return "Player wins! Rock beats scissors!";
-    } else if (comp.toUpperCase() === "ROCK" && playerChoice.toUpperCase() === "SCISSORS") {
-        return "Computer wins! Rock beats scissors!";
+        playerScore++;
+        return "Player: " + playerChoice.toUpperCase() + " | Computer: " + comp + " | " + "Player point!" + " | PScore: " + playerScore;
     } else if (playerChoice.toUpperCase() === "SCISSORS" && comp.toUpperCase() === "PAPER") {
-        return "Player wins! Scissors beats paper!";
-    } else if (comp.toUpperCase() === "SCISSORS" && playerChoice.toUpperCase() === "PAPER") {
-        return "Computer wins! Scissors beats paper!";
+        playerScore++;
+        return "Player: " + playerChoice.toUpperCase() + " | Computer: " + comp + " | " + "Player point!" + " | PScore: " + playerScore;
     } else if (playerChoice.toUpperCase() === "PAPER" && comp.toUpperCase() === "ROCK") {
-        return "Player wins! Paper beats rock!";
-    } else if (comp.toUpperCase() === "PAPER" && playerChoice.toUpperCase() === "ROCK") {
-        return "Computer wins! Paper beats rock!";
+        playerScore++;
+        return "Player: " + playerChoice.toUpperCase() + " | Computer: " + comp + " | " + "Player point!" + " | PScore: " + playerScore;
     } else {
-        return "null";
+        computerScore++;
+        return "Computer: " + comp + " | Player: " + playerChoice.toUpperCase() + " | " + "Computer point! " + " | CScore: " + computerScore;
     }
 }
 
-console.log(oneRound("rock", getComputerChoice()));
+function playGame() {
+    for (let i = 1; i <= 5; i++) {
+        /*FIXME:let playerChoice = prompt("Input Rock, Paper, or Scissors"); */
+        let playerChoice = "rock";
+        const computerSelection = getComputerChoice();
+        console.log(oneRound(playerChoice, computerSelection));
+    }
+
+    if (playerScore > computerScore) {
+        console.log("You beat the computer! SICK!");
+    } else if (computerScore > playerScore) {
+        console.log("Haha. A COMPUTER beat you.");
+    } else if (playerScore === computerScore) {
+        console.log("IT'S A DRAW! Rematch?");
+    } else {
+        console.log("deadgame");
+    }
+}
+
+playGame();

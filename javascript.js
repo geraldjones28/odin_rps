@@ -1,15 +1,12 @@
 function getComputerChoice() {
-    let num = Math.floor(Math.random() * 30) + 1;
+    let num = Math.floor(Math.random() * 3); + 1
     
-    if (num <= 10) {
-        comp = "rock";
-        return comp.toUpperCase();
-    } else if (num > 10 && num <= 20) {
-        comp = "paper";
-        return comp.toUpperCase();
+    if (num === 0) {
+        return "rock".toUpperCase();
+    } else if (num === 1) {
+        return "paper".toUpperCase();
     } else {
-        comp = "scissors";
-        return comp.toUpperCase();
+        return "scissors".toUpperCase();
     }
 }
 

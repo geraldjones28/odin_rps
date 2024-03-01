@@ -32,12 +32,15 @@ function oneRound(playerChoice, comp) {
     }
 }
 
+
+/*FIXME: Possibly make a nested loop to input each game result? */
 function playGame() {
-    for (let i = 1; i <= 5; i++) {
-        /*FIXME:let playerChoice = prompt("Input Rock, Paper, or Scissors"); */
-        let playerChoice = "rock";
-        const computerSelection = getComputerChoice();
-        console.log(oneRound(playerChoice, computerSelection));
+    for (let i = 1; i <= 2; i++) {
+        let playerChoice = prompt("Input Rock, Paper, or Scissors", "Poop");
+        let computerSelection = getComputerChoice();
+        
+        document.getElementById("name").innerHTML =
+            "Game Results: " + oneRound(playerChoice, computerSelection);
     }
 
     if (playerScore > computerScore) {
@@ -51,4 +54,4 @@ function playGame() {
     }
 }
 
-playGame();
+/* playGame(); */

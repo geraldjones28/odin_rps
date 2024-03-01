@@ -32,26 +32,30 @@ function oneRound(playerChoice, comp) {
     }
 }
 
+/* FIXME: Create a function to just show final player/computer score for playGame() for loop. 
+   Keep oneRound syntax to help with console debugging */
 
-/*FIXME: Possibly make a nested loop to input each game result? */
 function playGame() {
-    for (let i = 1; i <= 2; i++) {
-        let playerChoice = prompt("Input Rock, Paper, or Scissors", "Poop");
+    for (let i = 1; i <= 5; i++) {
+        let playerChoice = prompt("Input Rock, Paper, or Scissors");
         let computerSelection = getComputerChoice();
-        
-        document.getElementById("name").innerHTML =
-            "Game Results: " + oneRound(playerChoice, computerSelection);
+        if (playerChoice != null) {
+            document.getElementById("results").innerHTML = "Game Results: " + oneRound(playerChoice, computerSelection);
+            /* Maybe can properly stop box initialization later? setTimeout(oneRound, 0); */
+            /* Functionality Test: (Move to separate function?) */
+            console.log("Game Results: " + document.getElementById("results").innerHTML);
+        }
     }
 
     if (playerScore > computerScore) {
-        console.log("You beat the computer! SICK!");
+        document.getElementById("playerWon").innerHTML =
+            "You beat the computer! SICK!";
     } else if (computerScore > playerScore) {
-        console.log("Haha. A COMPUTER beat you.");
+        document.getElementById("compWon").innerHTML =
+            "Haha! A COMPUTER beat you!";
     } else if (playerScore === computerScore) {
-        console.log("IT'S A DRAW! Rematch?");
+        document.getElementById("tie").innerHTML ="IT'S A DRAW! Rematch?";
     } else {
         console.log("deadgame");
     }
 }
-
-/* playGame(); */

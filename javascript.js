@@ -32,19 +32,23 @@ function oneRound(playerChoice, comp) {
     }
 }
 
-/* FIXME: Create a function to just show final player/computer score for playGame() for loop. 
-   Keep oneRound syntax to help with console debugging */
+function consoleCheck() {
+    console.log("Game Results: " + document.getElementById("results").innerHTML);
+}
 
 function playGame() {
     for (let i = 1; i <= 5; i++) {
         let playerChoice = prompt("Input Rock, Paper, or Scissors");
         let computerSelection = getComputerChoice();
+        oneRound(playerChoice, computerSelection);
+
         if (playerChoice != null) {
-            document.getElementById("results").innerHTML = "Game Results: " + oneRound(playerChoice, computerSelection);
-            /* Maybe can properly stop box initialization later? setTimeout(oneRound, 0); */
-            /* Functionality Test: (Move to separate function?) */
-            console.log("Game Results: " + document.getElementById("results").innerHTML);
+            document.getElementById("results").innerHTML = "Player Score: " + playerScore + " // Computer Score: " + computerScore;
+            /* Maybe can properly stop box initialization later? 
+            setTimeout(oneRound, 0); */
         }
+
+        consoleCheck();
     }
 
     if (playerScore > computerScore) {

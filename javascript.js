@@ -1,4 +1,4 @@
-/* Score resets every game */
+/* Score starts at 0 */
 let playerScore = 0;
 let computerScore = 0;
 
@@ -33,7 +33,7 @@ function oneRound(playerChoice, comp) {
 }
 
 function consoleCheck() {
-    console.log("Game Results: " + document.getElementById("results").innerHTML);
+    console.log("Game Results: " + document.getElementById("results").innerText);
 }
 
 function playGame() {
@@ -43,7 +43,7 @@ function playGame() {
         oneRound(playerChoice, computerSelection);
 
         if (playerChoice != null) {
-            document.getElementById("results").innerHTML = "Player Score: " + playerScore + " // Computer Score: " + computerScore;
+            document.getElementById("results").innerText = "Player Score: " + playerScore + " // Computer Score: " + computerScore;
             /* Maybe can properly stop box initialization later? 
             setTimeout(oneRound, 0); */
         }
@@ -52,14 +52,18 @@ function playGame() {
     }
 
     if (playerScore > computerScore) {
-        document.getElementById("playerWon").innerHTML =
+        document.getElementById("playerWon").innerText =
             "You beat the computer! SICK!";
     } else if (computerScore > playerScore) {
-        document.getElementById("compWon").innerHTML =
+        document.getElementById("compWon").innerText =
             "Haha! A COMPUTER beat you!";
     } else if (playerScore === computerScore) {
-        document.getElementById("tie").innerHTML ="IT'S A DRAW! Rematch?";
+        document.getElementById("tie").innerText ="IT'S A DRAW! Rematch?";
     } else {
         console.log("deadgame");
     }
+}
+
+function refreshPage() {
+    location.reload();
 }

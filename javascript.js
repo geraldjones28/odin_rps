@@ -2,6 +2,11 @@
 let playerScore = 0;
 let computerScore = 0;
 
+/* Button Event Listeners */
+const rockBtn = document.querySelector('.option-rock');
+const paperBtn = document.querySelector('.option-paper');
+const scissorsBtn = document.querySelector('.option-scissors');
+
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3); + 1
     
@@ -16,23 +21,14 @@ function getComputerChoice() {
 
 function playRound(playerChoice, comp) {
     if (playerChoice.toUpperCase() === comp) {
-        return "Tie!";
     } else if (playerChoice.toUpperCase() === "ROCK" && comp === "SCISSORS") {
         playerScore++;
-        return "Player: " + playerChoice.toUpperCase() + " | Computer: " + comp 
-        + " | " + "Player point!" + " | PScore: " + playerScore;
     } else if (playerChoice.toUpperCase() === "SCISSORS" && comp === "PAPER") {
         playerScore++;
-        return "Player: " + playerChoice.toUpperCase() + " | Computer: " + comp 
-        + " | " + "Player point!" + " | PScore: " + playerScore;
     } else if (playerChoice.toUpperCase() === "PAPER" && comp === "ROCK") {
         playerScore++;
-        return "Player: " + playerChoice.toUpperCase() + " | Computer: " + comp 
-        + " | " + "Player point!" + " | PScore: " + playerScore;
     } else {
         computerScore++;
-        return "Computer: " + comp + " | Player: " + playerChoice.toUpperCase() 
-        + " | " + "Computer point! " + " | CScore: " + computerScore;
     }
 }
 

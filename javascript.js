@@ -2,10 +2,21 @@
 let playerScore = 0;
 let computerScore = 0;
 
-/* Button Event Listeners */
+/* Buttons */
 const rockBtn = document.querySelector('.option-rock');
 const paperBtn = document.querySelector('.option-paper');
 const scissorsBtn = document.querySelector('.option-scissors');
+
+/* Button Event Listeners */
+rockBtn.addEventListener('click', () => {
+    playRound('rock', getComputerChoice());
+});
+paperBtn.addEventListener('click', () => {
+    playRound('paper', getComputerChoice());
+});
+scissorsBtn.addEventListener('click', () => {
+    playRound('scissors', getComputerChoice());
+});
 
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3); + 1
@@ -20,15 +31,38 @@ function getComputerChoice() {
 }
 
 function playRound(playerChoice, comp) {
-    if (playerChoice.toUpperCase() === comp) {
-    } else if (playerChoice.toUpperCase() === "ROCK" && comp === "SCISSORS") {
-        playerScore++;
-    } else if (playerChoice.toUpperCase() === "SCISSORS" && comp === "PAPER") {
-        playerScore++;
-    } else if (playerChoice.toUpperCase() === "PAPER" && comp === "ROCK") {
-        playerScore++;
+    if (playerChoice.toUpperCase() === "ROCK") {
+        if (comp === "SCISSORS") {
+            playerScore++;
+        } else if (comp === 'PAPER') {
+            computerScore++;
+        } else {
+            console.log('tie');
+        }
+        console.log('player:[' + playerChoice + '] score:[' + 
+        playerScore + ']' + 'comp:[' + comp + '] score:[' + computerScore + ']');
+    } else if (playerChoice.toUpperCase() === "SCISSORS") {
+        if (comp === "PAPER") {
+            playerScore++;
+        } else if (comp === 'ROCK') {
+            computerScore++;
+        } else {
+            console.log('tie');
+        }
+        console.log('player:[' + playerChoice + '] score:[' + 
+        playerScore + ']' + 'comp:[' + comp + '] score:[' + computerScore + ']');
+    } else if (playerChoice.toUpperCase() === "PAPER") {
+        if (comp === "ROCK") {
+            playerScore++;
+        } else if (comp === 'SCISSORS') {
+            computerScore++;
+        } else {
+            console.log('tie');
+        }
+        console.log('player:[' + playerChoice + '] score:[' + 
+        playerScore + ']' + 'comp:[' + comp + '] score:[' + computerScore + ']');
     } else {
-        computerScore++;
+        console.log('deadgame');
     }
 }
 

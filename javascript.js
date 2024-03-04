@@ -1,6 +1,7 @@
 /* Score starts at 0 */
 let playerScore = 0;
 let computerScore = 0;
+const timeReset = 1000;
 
 /* Buttons */
 const rockBtn = document.querySelector('#option-rock');
@@ -29,6 +30,10 @@ let scoreComp = document.querySelector('#score-comp');
 scorePlayer.innerHTML = 'PLAYER: ' + playerScore;
 scoreComp.innerHTML = 'COMPUTER: ' + computerScore;
 
+/* Game Results */
+const playerWon = document.querySelector('#player-won');
+const compWon = document.querySelector('#comp-won');
+
 /* Randomizes computer choice */
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3); + 1
@@ -42,6 +47,17 @@ function getComputerChoice() {
     }
 }
 
+/* Button color temporarily change depending on round winner */
+function greenButton(btn) {
+    btn.style.backgroundColor = "#90ee90";
+}
+function redButton(btn) {
+    btn.style.backgroundColor = "#ffcccb";
+}
+function purpleButton(btn) {
+    btn.style.backgroundColor = "#CBC3E3";
+}
+
 /* Simulates a round of RPS based on which button user clicks */
 function playRound(playerChoice, comp) {
     /* if-else game results branches */
@@ -49,29 +65,17 @@ function playRound(playerChoice, comp) {
         if (comp === "SCISSORS") {
             playerScore++;
             roundPlayer.innerHTML = 'PLAYER WINS';
-            setTimeout(clearFunction, 1500);
+            greenButton(rockBtn);
+            setTimeout(clearFunction, timeReset);
         } else if (comp === 'PAPER') {
             computerScore++;
             roundComp.innerHTML = 'COMPUTER WINS';
-            setTimeout(clearFunction, 1500);
+            redButton(rockBtn);
+            setTimeout(clearFunction, timeReset);
         } else {
             roundTie.innerHTML = 'TIE';
-            setTimeout(clearFunction, 1500);
-        }
-        scorePlayer.innerHTML = 'PLAYER: ' + playerScore;
-        scoreComp.innerHTML = 'COMPUTER: ' + computerScore;
-    } else if (playerChoice.toUpperCase() === "SCISSORS") {
-        if (comp === "PAPER") {
-            playerScore++;
-            roundPlayer.innerHTML = 'PLAYER WINS';
-            setTimeout(clearFunction, 1500);
-        } else if (comp === 'ROCK') {
-            computerScore++;
-            roundComp.innerHTML = 'COMPUTER WINS';
-            setTimeout(clearFunction, 1500);
-        } else {
-            roundTie.innerHTML = 'TIE';
-            setTimeout(clearFunction, 1500);
+            purpleButton(rockBtn);
+            setTimeout(clearFunction, timeReset);
         }
         scorePlayer.innerHTML = 'PLAYER: ' + playerScore;
         scoreComp.innerHTML = 'COMPUTER: ' + computerScore;
@@ -79,63 +83,70 @@ function playRound(playerChoice, comp) {
         if (comp === "ROCK") {
             playerScore++;
             roundPlayer.innerHTML = 'PLAYER WINS';
-            setTimeout(clearFunction, 1500);
+            greenButton(paperBtn);
+            setTimeout(clearFunction, timeReset);
         } else if (comp === 'SCISSORS') {
             computerScore++;
             roundComp.innerHTML = 'COMPUTER WINS';
-            setTimeout(clearFunction, 1500);
+            redButton(paperBtn);
+            setTimeout(clearFunction, timeReset);
         } else {
             roundTie.innerHTML = 'TIE';
-            setTimeout(clearFunction, 1500);
+            purpleButton(paperBtn);
+            setTimeout(clearFunction, timeReset);
+        }
+        scorePlayer.innerHTML = 'PLAYER: ' + playerScore;
+        scoreComp.innerHTML = 'COMPUTER: ' + computerScore;
+    } else if (playerChoice.toUpperCase() === "SCISSORS") {
+        if (comp === "PAPER") {
+            playerScore++;
+            roundPlayer.innerHTML = 'PLAYER WINS';
+            greenButton(scissorsBtn);
+            setTimeout(clearFunction, timeReset);
+        } else if (comp === 'ROCK') {
+            computerScore++;
+            roundComp.innerHTML = 'COMPUTER WINS';
+            redButton(scissorsBtn);
+            setTimeout(clearFunction, timeReset);
+        } else {
+            roundTie.innerHTML = 'TIE';
+            purpleButton(scissorsBtn);
+            setTimeout(clearFunction, timeReset);
         }
         scorePlayer.innerHTML = 'PLAYER: ' + playerScore;
         scoreComp.innerHTML = 'COMPUTER: ' + computerScore;
     } else {
-        console.log('deadgame');
+        refreshPage();
+    }
+
+    if ((playerScore === 5) || (computerScore === 5)) {
+        gameResults();
     }
 }
 
-/* Clears the innerHTML of round results */
+/* Displays the winner of the game! */
+function gameResults() {
+    if (playerScore === 5) {
+        playerWon.innerHTML = 'GAME OVER. YOU WIN!';
+    }
+    if (computerScore === 5) {
+        compWon.innerHTML = 'GAME OVER. COMPUTER WINS!';
+    }
+    setTimeout(refreshPage, 3000);
+}
+
+/* Clears the innerHTML & Button Colors of round results */
 function clearFunction() {
     roundPlayer.innerHTML = '';
     roundComp.innerHTML = '';
     roundTie.innerHTML = '';
+
+    rockBtn.style.backgroundColor = '';
+    paperBtn.style.backgroundColor = '';
+    scissorsBtn.style.backgroundColor = '';
 }
 
-/* Clears Score for proper update */
-function clearScore() {
-    
-}
-
-// function playGame() {
-//     for (let i = 1; i <= 1; i++) {
-//         let playerChoice = prompt("Input Rock, Paper, or Scissors");
-//         let computerChoice = getComputerChoice();
-//         playRound(playerChoice, computerChoice);
-
-//         if (playerChoice != null) {
-//             document.getElementById("results").innerText = "Player Score: " + playerScore + 
-//             " // Computer Score: " + computerScore;
-//             /* Maybe can properly stop box initialization later? 
-//             setTimeout(playRound, 0); */
-//         }
-
-//         consoleCheck();
-//     }
-
-//     if (playerScore > computerScore) {
-//         document.getElementById("playerWon").innerText =
-//             "You beat the computer! SICK!";
-//     } else if (computerScore > playerScore) {
-//         document.getElementById("compWon").innerText =
-//             "Haha! A COMPUTER beat you!";
-//     } else if (playerScore === computerScore) {
-//         document.getElementById("tie").innerText ="IT'S A DRAW! Rematch?";
-//     } else {
-//         console.log("deadgame");
-//     }
-// }
-
+/* Reset Game button functionality */
 function refreshPage() {
     location.reload();
 }

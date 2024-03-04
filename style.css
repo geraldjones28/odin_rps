@@ -9,13 +9,13 @@ body {
     align-items: center;
 }
 
-.option-rock, .option-paper, .option-scissors {
+#option-rock, #option-paper, #option-scissors {
     margin-top: 5px;
     margin-bottom: 20px;
 }
-.option-rock {
+#option-rock {
     margin-top: 20px;
 }
-.option-scissors {
+#option-scissors {
     margin-bottom: 20px;
 }

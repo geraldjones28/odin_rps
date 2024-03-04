@@ -15,17 +15,26 @@
         Play Game!
     </button>
     -->
-    <button class="option-rock">CHOOSE ROCK</button>
-    <button class="option-paper">CHOOSE PAPER</button>
-    <button class="option-scissors">CHOOSE SCISSORS</button>
+    <button id="option-rock">CHOOSE ROCK</button>
+    <button id="option-paper">CHOOSE PAPER</button>
+    <button id="option-scissors">CHOOSE SCISSORS</button>
 
-    <button onclick="refreshPage()">
+    <div class="round">
+        <p id="round-player"></p>
+        <p id="round-comp"></p>
+        <p id="round-tie"></p>
+    </div>
+
+    <button style="background-color: bisque;" 
+            onclick="refreshPage()">
         Reset Game
     </button>
 
-    <p id="results"></p>
-    <p id="playerWon"></p>
-    <p id="compWon"></p>
-    <p id="tie"></p>
+    <div class="final">
+        <p id="results"></p>
+        <p id="playerWon"></p>
+        <p id="compWon"></p>
+        <p id="tie"></p>
+    </div>
 </body>
 </html>

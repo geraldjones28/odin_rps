@@ -9,6 +9,14 @@ body {
     align-items: center;
 }
 
+.score-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    border: solid red;
+}
+
 #option-rock, #option-paper, #option-scissors {
     margin-top: 5px;
     margin-bottom: 20px;

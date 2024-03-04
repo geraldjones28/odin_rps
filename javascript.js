@@ -23,6 +23,12 @@ let roundPlayer = document.querySelector('#round-player');
 let roundComp = document.querySelector('#round-comp');
 let roundTie = document.querySelector('#round-tie');
 
+/* Score Results */
+let scorePlayer = document.querySelector('#score-player');
+let scoreComp = document.querySelector('#score-comp');
+scorePlayer.innerHTML = 'PLAYER: ' + playerScore;
+scoreComp.innerHTML = 'COMPUTER: ' + computerScore;
+
 /* Randomizes computer choice */
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3); + 1
@@ -49,12 +55,11 @@ function playRound(playerChoice, comp) {
             roundComp.innerHTML = 'COMPUTER WINS';
             setTimeout(clearFunction, 1500);
         } else {
-            console.log('tie');
             roundTie.innerHTML = 'TIE';
             setTimeout(clearFunction, 1500);
         }
-        console.log('player:[' + playerChoice + '] score:[' + 
-        playerScore + ']' + 'comp:[' + comp + '] score:[' + computerScore + ']');
+        scorePlayer.innerHTML = 'PLAYER: ' + playerScore;
+        scoreComp.innerHTML = 'COMPUTER: ' + computerScore;
     } else if (playerChoice.toUpperCase() === "SCISSORS") {
         if (comp === "PAPER") {
             playerScore++;
@@ -65,12 +70,11 @@ function playRound(playerChoice, comp) {
             roundComp.innerHTML = 'COMPUTER WINS';
             setTimeout(clearFunction, 1500);
         } else {
-            console.log('tie');
             roundTie.innerHTML = 'TIE';
             setTimeout(clearFunction, 1500);
         }
-        console.log('player:[' + playerChoice + '] score:[' + 
-        playerScore + ']' + 'comp:[' + comp + '] score:[' + computerScore + ']');
+        scorePlayer.innerHTML = 'PLAYER: ' + playerScore;
+        scoreComp.innerHTML = 'COMPUTER: ' + computerScore;
     } else if (playerChoice.toUpperCase() === "PAPER") {
         if (comp === "ROCK") {
             playerScore++;
@@ -81,26 +85,26 @@ function playRound(playerChoice, comp) {
             roundComp.innerHTML = 'COMPUTER WINS';
             setTimeout(clearFunction, 1500);
         } else {
-            console.log('tie');
             roundTie.innerHTML = 'TIE';
             setTimeout(clearFunction, 1500);
         }
-        console.log('player:[' + playerChoice + '] score:[' + 
-        playerScore + ']' + 'comp:[' + comp + '] score:[' + computerScore + ']');
+        scorePlayer.innerHTML = 'PLAYER: ' + playerScore;
+        scoreComp.innerHTML = 'COMPUTER: ' + computerScore;
     } else {
         console.log('deadgame');
     }
 }
 
-/* Clears the innerHTML of round results after 1.5 seconds */
+/* Clears the innerHTML of round results */
 function clearFunction() {
     roundPlayer.innerHTML = '';
     roundComp.innerHTML = '';
     roundTie.innerHTML = '';
 }
 
-function consoleCheck() {
-    console.log("Game Results: " + document.getElementById("results").innerText);
+/* Clears Score for proper update */
+function clearScore() {
+    
 }
 
 // function playGame() {
